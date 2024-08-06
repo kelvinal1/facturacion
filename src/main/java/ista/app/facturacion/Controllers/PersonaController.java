@@ -45,4 +45,15 @@ public class PersonaController {
         if(list!= null) return ResponseEntity.ok(list);
         return  ResponseEntity.ok(null);
     }
+
+    @DeleteMapping("/delete-by-id/{id}")
+    private  ResponseEntity<Boolean> deleteById(@PathVariable long id) {
+        personaRepository.deleteById(id);
+        return ResponseEntity.ok(true);
+    }
+
+    @PutMapping("update")
+    public PersonaModel update(@RequestBody PersonaModel clasificacion) {
+        return personaRepository.save(clasificacion);
+    }
 }

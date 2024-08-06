@@ -10,7 +10,7 @@ services:
 
   backend:
     build:
-      context: ./backend
+      #context: .
       dockerfile: Dockerfile
     ports:
       - "9898:8080"

@@ -21,6 +21,11 @@ public class ClasificacionController {
         return clasificacionRepository.save(clasificacion);
     }
 
+    @PutMapping("update")
+    public ClasificacionModel update(@RequestBody ClasificacionModel clasificacion) {
+        return clasificacionRepository.save(clasificacion);
+    }
+
     @GetMapping("/get-all")
     private List<ClasificacionModel> getAllClasificacion() {
         return clasificacionRepository.findAll();
@@ -30,6 +35,12 @@ public class ClasificacionController {
     private  ResponseEntity<ClasificacionModel> getById(@PathVariable long id) {
         ClasificacionModel list = clasificacionRepository.findById(id).get();
         return ResponseEntity.ok(list);
+    }
+
+    @DeleteMapping("/delete-by-id/{id}")
+    private  ResponseEntity<Boolean> deleteById(@PathVariable long id) {
+        clasificacionRepository.deleteById(id);
+        return ResponseEntity.ok(true);
     }
 
 

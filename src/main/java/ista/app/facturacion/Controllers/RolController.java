@@ -1,6 +1,7 @@
 package ista.app.facturacion.Controllers;
 
 import ista.app.facturacion.Models.ClasificacionModel;
+import ista.app.facturacion.Models.ItemFacturaModel;
 import ista.app.facturacion.Models.RolModel;
 import ista.app.facturacion.Repositories.ClasificacionRepository;
 import ista.app.facturacion.Repositories.RolRepository;
@@ -47,5 +48,16 @@ public class RolController {
         RolModel list = rolRepository.findByEstado(state);
         if(list!=null) return ResponseEntity.ok(true);
         return ResponseEntity.ok(false);
+    }
+
+    @DeleteMapping("/delete-by-id/{id}")
+    private  ResponseEntity<Boolean> deleteById(@PathVariable long id) {
+        rolRepository.deleteById(id);
+        return ResponseEntity.ok(true);
+    }
+
+    @PutMapping("update")
+    public RolModel update(@RequestBody RolModel clasificacion) {
+        return rolRepository.save(clasificacion);
     }
 }

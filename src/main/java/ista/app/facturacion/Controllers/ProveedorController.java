@@ -1,5 +1,6 @@
 package ista.app.facturacion.Controllers;
 
+import ista.app.facturacion.Models.ItemFacturaModel;
 import ista.app.facturacion.Models.ProveedorModel;
 import ista.app.facturacion.Repositories.ProveedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,16 @@ public class ProveedorController {
     private ResponseEntity<ProveedorModel> getById(@PathVariable long id) {
         ProveedorModel  list = proveedorRepository.findById(id).get();
         return ResponseEntity.ok(list);
+    }
+
+    @DeleteMapping("/delete-by-id/{id}")
+    private  ResponseEntity<Boolean> deleteById(@PathVariable long id) {
+        proveedorRepository.deleteById(id);
+        return ResponseEntity.ok(true);
+    }
+
+    @PutMapping("update")
+    public ProveedorModel update(@RequestBody ProveedorModel clasificacion) {
+        return proveedorRepository.save(clasificacion);
     }
 }

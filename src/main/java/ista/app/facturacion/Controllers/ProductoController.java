@@ -1,5 +1,6 @@
 package ista.app.facturacion.Controllers;
 
+import ista.app.facturacion.Models.ItemFacturaModel;
 import ista.app.facturacion.Models.PersonaModel;
 import ista.app.facturacion.Models.ProductoModel;
 import ista.app.facturacion.Repositories.PersonaRepository;
@@ -32,5 +33,16 @@ public class ProductoController {
     private ResponseEntity<ProductoModel> getById(@PathVariable long id) {
         ProductoModel  list = productoRepository.findById(id).get();
         return ResponseEntity.ok(list);
+    }
+
+    @DeleteMapping("/delete-by-id/{id}")
+    private  ResponseEntity<Boolean> deleteById(@PathVariable long id) {
+        productoRepository.deleteById(id);
+        return ResponseEntity.ok(true);
+    }
+
+    @PutMapping("update")
+    public ProductoModel update(@RequestBody ProductoModel clasificacion) {
+        return productoRepository.save(clasificacion);
     }
 }

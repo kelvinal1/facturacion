@@ -34,5 +34,16 @@ public class ItemFacturaController {
         return ResponseEntity.ok(list);
     }
 
+    @DeleteMapping("/delete-by-id/{id}")
+    private  ResponseEntity<Boolean> deleteById(@PathVariable long id) {
+        itemFacturaRepository.deleteById(id);
+        return ResponseEntity.ok(true);
+    }
+
+    @PutMapping("update")
+    public ItemFacturaModel update(@RequestBody ItemFacturaModel clasificacion) {
+        return itemFacturaRepository.save(clasificacion);
+    }
+
 
 }

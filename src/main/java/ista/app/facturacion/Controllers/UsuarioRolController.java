@@ -1,5 +1,6 @@
 package ista.app.facturacion.Controllers;
 
+import ista.app.facturacion.Models.TipoPagoModel;
 import ista.app.facturacion.Models.UsuarioModel;
 import ista.app.facturacion.Models.UsuarioRolModel;
 import ista.app.facturacion.Repositories.UsuarioRepository;
@@ -33,5 +34,16 @@ public class UsuarioRolController {
     private ResponseEntity<UsuarioRolModel> getById(@PathVariable long id) {
         UsuarioRolModel list =usuarioRolRepository.findById(id).get();
         return ResponseEntity.ok(list);
+    }
+
+    @DeleteMapping("/delete-by-id/{id}")
+    private  ResponseEntity<Boolean> deleteById(@PathVariable long id) {
+        usuarioRolRepository.deleteById(id);
+        return ResponseEntity.ok(true);
+    }
+
+    @PutMapping("update")
+    public UsuarioRolModel update(@RequestBody UsuarioRolModel clasificacion) {
+        return usuarioRolRepository.save(clasificacion);
     }
 }

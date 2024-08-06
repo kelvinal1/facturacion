@@ -42,4 +42,15 @@ public class UsuarioController {
         if(list!=null) return ResponseEntity.ok(true);
         return ResponseEntity.ok(false);
     }
+
+    @DeleteMapping("/delete-by-id/{id}")
+    private  ResponseEntity<Boolean> deleteById(@PathVariable long id) {
+        usuarioRepository.deleteById(id);
+        return ResponseEntity.ok(true);
+    }
+
+    @PutMapping("update")
+    public UsuarioModel update(@RequestBody UsuarioModel clasificacion) {
+        return usuarioRepository.save(clasificacion);
+    }
 }

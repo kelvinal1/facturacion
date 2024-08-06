@@ -1,5 +1,6 @@
 package ista.app.facturacion.Controllers;
 
+import ista.app.facturacion.Models.ItemFacturaModel;
 import ista.app.facturacion.Models.RolModel;
 import ista.app.facturacion.Models.TipoPagoModel;
 import ista.app.facturacion.Repositories.RolRepository;
@@ -33,5 +34,16 @@ public class TipoPagoController {
     private ResponseEntity<TipoPagoModel> getById(@PathVariable long id) {
         TipoPagoModel list = tipoPagoRepository.findById(id).get();
         return ResponseEntity.ok(list);
+    }
+
+    @DeleteMapping("/delete-by-id/{id}")
+    private  ResponseEntity<Boolean> deleteById(@PathVariable long id) {
+        tipoPagoRepository.deleteById(id);
+        return ResponseEntity.ok(true);
+    }
+
+    @PutMapping("update")
+    public TipoPagoModel update(@RequestBody TipoPagoModel clasificacion) {
+        return tipoPagoRepository.save(clasificacion);
     }
 }

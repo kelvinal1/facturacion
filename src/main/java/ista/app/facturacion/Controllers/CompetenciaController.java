@@ -42,4 +42,15 @@ public class CompetenciaController {
         return ResponseEntity.ok(false);
     }
 
+    @DeleteMapping("/delete-by-id/{id}")
+    private  ResponseEntity<Boolean> deleteById(@PathVariable long id) {
+        competenciaRepository.deleteById(id);
+        return ResponseEntity.ok(true);
+    }
+
+    @PutMapping("update")
+    public CompetenciaModel update(@RequestBody CompetenciaModel clasificacion) {
+        return competenciaRepository.save(clasificacion);
+    }
+
 }
